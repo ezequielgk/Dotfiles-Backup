@@ -1,0 +1,23 @@
+# ~/.config/sway/config
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term foot
+
+
+# ============================================
+# CARGA DE MÓDULOS
+# ============================================
+include ~/.config/sway/conf.d/appearance.conf
+include ~/.config/sway/conf.d/keybinds.conf
+include ~/.config/sway/conf.d/workspaces.conf
+include ~/.config/sway/conf.d/windows.conf
+include ~/.config/sway/conf.d/input.conf
+include ~/.config/sway/conf.d/output.conf
+include ~/.config/sway/conf.d/autostart.conf
+include ~/.config/sway/noctalia
+
+include /etc/sway/config.d/*

@@ -1,0 +1,7 @@
+[catalog.heroiclauncher]
+name = "Heroic Launcher"
+category = "gaming"
+
+[templates.heroiclauncher]
+input_path = 'heroic.css'
+output_path = '$XDG_CONFIG_HOME/heroic/themes/matugen.css'

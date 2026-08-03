@@ -1,0 +1,9 @@
+@import url("colors.css");
+
+@import url("websites/bitwarden.css");
+@import url("websites/github.css");
+@import url("websites/youtube.css");
+
+* {
+  border-radius: 0 !important;
+}

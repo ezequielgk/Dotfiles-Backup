@@ -1,0 +1,7 @@
+# Ignore local state and clipboard history
+.local/state/noctalia/clipboard/
+.local/state/noctalia/notification_history.json
+.local/state/noctalia/notification_history_assets/
+.local/state/noctalia/recently_used.json
+.local/state/noctalia/usage_counts.json
+.local/state/noctalia/plugin-cache/

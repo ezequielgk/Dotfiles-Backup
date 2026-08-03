@@ -1,0 +1,22 @@
+[colors-dark]
+foreground=e5dec9
+background=242120
+regular0=242120
+regular1=c6685d
+regular2=839c7a
+regular3=cb9168
+regular4=67808a
+regular5=a27886
+regular6=769f93
+regular7=e5dec9
+bright0=36312f
+bright1=db8177
+bright2=9cb793
+bright3=e2aa82
+bright4=809ba6
+bright5=bc919f
+bright6=92b9ad
+bright7=f4eedc
+selection-foreground=e5dec9
+selection-background=36312f
+cursor=242120 cb9168
