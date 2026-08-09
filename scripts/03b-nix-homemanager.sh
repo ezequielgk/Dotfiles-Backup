@@ -15,10 +15,10 @@ else
     fi
     echo "03b: instalando Nix single-user (no daemon)..."
     # --no-daemon forces single-user install (store owned by $USER, no nix-daemon).
-    # --no-confirm does NOT exist on the Nix installer; --no-daemon is the correct
-    # flag. The installer detects no-systemd on Devuan and would do single-user
-    # anyway, but we force it to be explicit.
-    sh "$(curl -L https://nixos.org/nix/install)" --no-daemon
+    # Pipe form (not `sh "$(curl ...)"` which passes the script body as a
+    # filename and fails with "File name too long"). `sh -s --` reads from stdin
+    # and forwards the rest as args.
+    curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 fi
 
 # Make nix visible in this script's process (installer writes /etc/profile.d/nix.sh).
