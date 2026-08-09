@@ -1,9 +1,0 @@
-[plugin_store]
-sort = "updated_at_desc"
-
-[security_migrations]
-calendar_credentials_v1 = true
-
-[wallpaper_panel]
-flatten = false
-sort = "date_desc"
