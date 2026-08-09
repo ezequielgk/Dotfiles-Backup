@@ -29,14 +29,43 @@ if [ -L /etc/runit/runsvdir/default/zramswap ]; then
     sudo sv restart zramswap 2>&1 || echo "10: sv restart zramswap fallo (revisar)"
 else
     # Enable zramswap service wherever its dir lives.
-    if [ -d /etc/sv/zramswap ]; then
+    # zram-tools on trixie ships only a systemd unit, not a runit service dir.
+    # If no runit service exists, build it by hand (foreground /usr/sbin/zramswap
+    # + svlogd logging) — same shape as emptty.
+    ZRAM_BIN=/usr/sbin/zramswap
+    SV_DIR=/etc/sv/zramswap
+    ENABLED=/etc/runit/runsvdir/default/zramswap
+    LOG_DIR=/var/log/zramswap
+
+    if [ -L "$ENABLED" ]; then
+        echo "10: zramswap ya habilitado"
+    elif [ -d /etc/sv/zramswap ]; then
         sudo ln -s /etc/sv/zramswap /etc/runit/runsvdir/default/
         echo "10: zramswap habilitado desde /etc/sv/zramswap"
     elif [ -d /usr/share/runit/sv.current/zramswap ]; then
         sudo ln -s /usr/share/runit/sv.current/zramswap /etc/runit/runsvdir/default/
         echo "10: zramswap habilitado desde /usr/share/runit/sv.current/zramswap"
+    elif [ -x "$ZRAM_BIN" ]; then
+        # Build the service dir by hand.
+        sudo mkdir -p "$SV_DIR/log"
+        sudo tee "$SV_DIR/run" >/dev/null <<EOF
+#!/bin/sh
+exec $ZRAM_BIN
+EOF
+        sudo chmod +x "$SV_DIR/run"
+
+        sudo tee "$SV_DIR/log/run" >/dev/null <<EOF
+#!/bin/sh
+exec svlogd -tt $LOG_DIR
+EOF
+        sudo chmod +x "$SV_DIR/log/run"
+
+        sudo mkdir -p "$LOG_DIR"
+        sudo ln -s "$SV_DIR" "$ENABLED"
+        echo "10: zramswap service dir creado a mano en $SV_DIR y habilitado"
     else
-        echo "10: WARNING: no encontre service dir de zramswap; revisar manualmente" >&2
+        echo "10: WARNING: no encontre service dir de zramswap, ni el binario $ZRAM_BIN para construirlo. Abortando zram." >&2
+        exit 1
     fi
 fi
 
