@@ -14,11 +14,10 @@ else
         exit 1
     fi
     echo "03b: instalando Nix single-user (no daemon)..."
-    # --no-daemon forces single-user install (store owned by $USER, no nix-daemon).
-    # Pipe form (not `sh "$(curl ...)"` which passes the script body as a
-    # filename and fails with "File name too long"). `sh -s --` reads from stdin
-    # and forwards the rest as args.
-    curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+    # Official Nix installer form with TLS hardening. Pipe form reads the
+    # installer from stdin; `sh -s --` forwards the rest as args. --no-daemon
+    # forces single-user install (store owned by $USER, no nix-daemon).
+    curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --no-daemon
 fi
 
 # Make nix visible in this script's process (installer writes /etc/profile.d/nix.sh).
