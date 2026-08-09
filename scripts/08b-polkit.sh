@@ -1,9 +1,12 @@
 #!/bin/sh
-# 08b-polkit.sh — install policykit-1 + elogind + dbus. Without systemd, elogind
+# 08b-polkit.sh — install polkitd + elogind + dbus. Without systemd, elogind
 # tracks sessions so polkitd can authorize. polkitd itself is D-Bus-activated
 # (no runit service needed). dbus and elogind need runit services enabled.
 # Devuan ships their service dirs in either /etc/sv/ or /usr/share/runit/sv.current/
 # so we detect and link the right one; if missing, build one by hand (emptty style).
+#
+# Note: Devuan trixie/Excalibur renamed the polkit packages — `policykit-1`
+# is gone. Replaced by `polkitd` (the daemon) + `pkexec` (the CLI helper).
 set -eu
 
 install_pkg() {
@@ -15,7 +18,8 @@ install_pkg() {
     fi
 }
 
-install_pkg policykit-1
+install_pkg polkitd
+install_pkg pkexec
 install_pkg elogind
 install_pkg libpam-elogind
 install_pkg dbus
