@@ -20,14 +20,24 @@ else
     curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --no-daemon
 fi
 
-# Make nix visible in this script's process (installer writes /etc/profile.d/nix.sh).
-# shellcheck disable=SC1091
-if [ -f /etc/profile.d/nix.sh ]; then
+# Make nix visible in this script's process.
+# Single-user install puts the profile script at ~/.nix-profile/etc/profile.d/nix.sh
+# (NOT /etc/profile.d/nix.sh, which is the multi-user path). The installer also
+# appends a source line to ~/.profile, but that only takes effect on re-login.
+NIX_PROFILE="${HOME}/.nix-profile/etc/profile.d/nix.sh"
+# shellcheck disable=SC1090
+if [ -f "$NIX_PROFILE" ]; then
+    # shellcheck disable=SC1090
+    . "$NIX_PROFILE"
+elif [ -f /etc/profile.d/nix.sh ]; then
+    # shellcheck disable=SC1091
     . /etc/profile.d/nix.sh
 fi
 
 command -v nix >/dev/null 2>&1 || {
-    echo "03b: ERROR: nix no esta en PATH despues del install. Hace falta re-login o sourcear /etc/profile.d/nix.sh" >&2
+    echo "03b: ERROR: nix no esta en PATH despues del install." >&2
+    echo "    Sources intentados: $NIX_PROFILE y /etc/profile.d/nix.sh" >&2
+    echo "    Proba re-login o: . $NIX_PROFILE  y re-correr este script." >&2
     exit 1
 }
 
