@@ -8,6 +8,90 @@ syntax clean (`sh -n` POSIX / `bash -n` for the orchestrator).
 
 ---
 
+## Quick start — fresh install checklist (TL;DR)
+
+If you just installed Devuan minimal and want to use this repo, follow these
+exact steps. Detailed explanations live further down.
+
+### Option A — clone from GitHub (recommended, needs internet)
+
+Logged in as **root** on the new system:
+
+```sh
+apt update && apt install -y git git-lfs ca-certificates
+git lfs install
+git clone https://github.com/ezequielgk/Dotfiles-Backup.git /home/ezequiel/devuan-migration
+chown -R ezequiel:ezequiel /home/ezequiel/devuan-migration
+bash /home/ezequiel/devuan-migration/scripts/00-base.sh
+bash /home/ezequiel/devuan-migration/scripts/01-devuan-depot.sh
+exit   # salir de root
+```
+
+Then log in as **ezequiel** (your normal user, created during the netinstall)
+and run:
+
+```sh
+bash ~/devuan-migration/scripts/install-all.sh
+```
+
+The orchestrator runs scripts `02 → 03b → 03 → 04b → 05 → 05b → 06 → 07 →
+08 → 08b → 10` in order, pausing before each for `[s] correr / [r] reintentar
+/ [a] abortar`. All output goes to `~/devuan-migration/install.log`. On any
+failure it stops there.
+
+After it finishes (it auto-runs `restore-from-backup.sh` for you), run these
+**three manual steps** the scripts cannot do for you:
+
+```sh
+# 1. Activate your real home-manager flake (overwrites the 03b scaffold)
+nix run home-manager/master -- switch --flake ~/.config/home-manager#ezequiel --impure
+
+# 2. Restart emptty so it picks the restored /etc/emptty/conf-tty7
+sudo sv restart emptty
+
+# 3. Fully log out and back in for the PAM gnome-keyring hook to activate
+```
+
+Verify:
+
+```sh
+sv status /etc/runit/runsvdir/default/*   # emptty, dbus, elogind, zramswap should be active
+swapon --show                              # /dev/zram0 prio 100 ~8G + /swapfile prio 10 8G
+pactl info                                 # audio: should show Default Sample Rate, not "Connection failed"
+```
+
+### Option B — restore from local tarball (offline, no internet required)
+
+If you also generated a local `devuan-backup.tar.zst` (Phase 1 last step),
+copy it to a USB before reinstalling, then on the new system:
+
+```sh
+# as root
+apt install -y zstd
+tar --zstd -xf /media/usb/devuan-backup.tar.zst -C /home/ezequiel
+chown -R ezequiel:ezequiel /home/ezequiel/devuan-migration
+bash /home/ezequiel/devuan-migration/scripts/00-base.sh
+bash /home/ezequiel/devuan-migration/scripts/01-devuan-depot.sh
+exit
+```
+
+Log in as **ezequiel**, then `bash ~/devuan-migration/scripts/install-all.sh`,
+then the three manual steps above.
+
+### Heads-up: what the repo on GitHub looks like
+
+The repo `Dotfiles-Backup` on GitHub has two branches:
+- `main` — this `devuan-migration/` tree (scripts, backup, README)
+- `legacy` — the previous Dotfiles-Backup contents (only relevant if you ever
+  want to go back to the old dotfiles-only backup; ignore for fresh installs)
+
+The `backup/appearance/fonts/` directory contains 161 `.ttf` files tracked via
+**Git LFS** (NotoSerifCJK are ~58 MB each, ~286 MB total). `git lfs install`
+before clone is mandatory — otherwise you get pointer files instead of real
+fonts.
+
+---
+
 ## Tree
 
 ```
