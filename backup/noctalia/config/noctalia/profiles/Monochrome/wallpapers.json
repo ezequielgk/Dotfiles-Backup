@@ -1,0 +1,14 @@
+{
+  "screens": [
+    {
+      "name": "",
+      "light": "/home/ezequiel/Imágenes/Wallpapers/ryoji-hayasaka-3VIQ1CDsrSk-unsplash.jpg",
+      "dark": "/home/ezequiel/Imágenes/Wallpapers/ryoji-hayasaka-3VIQ1CDsrSk-unsplash.jpg"
+    },
+    {
+      "name": "DP-1",
+      "light": "/home/ezequiel/Imágenes/Wallpapers/ryoji-hayasaka-3VIQ1CDsrSk-unsplash.jpg",
+      "dark": "/home/ezequiel/Imágenes/Wallpapers/ryoji-hayasaka-3VIQ1CDsrSk-unsplash.jpg"
+    }
+  ]
+}

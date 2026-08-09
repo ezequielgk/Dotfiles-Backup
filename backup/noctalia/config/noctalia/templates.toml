@@ -1,0 +1,103 @@
+[theme.templates]
+# Opcional: puedes habilitar las plantillas integradas o de la comunidad aquí si las necesitas
+# enable_builtin_templates   = true
+# enable_community_templates = true
+
+# --- Plantillas de Usuario ---
+
+[theme.templates.user.starship]
+input_path  = "~/.config/noctalia/starship/starship-x3.toml"
+output_path = "~/.config/starship.toml"
+
+#[theme.templates.user.sway]
+#input_path  = "~/.config/noctalia/sway-colors.conf"
+#output_path = "~/.config/sway/noctalia"
+
+#[theme.templates.user.foot]
+#input_path  = "/home/ezequiel/.config/noctalia/foot"
+#output_path = "/home/ezequiel/.config/foot/themes/noctalia"
+
+[theme.templates.user.obsidian]
+input_path  = "/home/ezequiel/.config/noctalia/obsidian-minimal-matugen-colors.css"
+output_path = "/home/ezequiel/Documentos/Universidad 2026/.obsidian/themes/Noctalia.css"
+
+[theme.templates.user.anntigravity]
+input_path  = "~/.config/noctalia/code.json"
+output_path = "/home/ezequiel/.antigravity-ide/extensions/noctalia.noctaliatheme-0.0.5-universal/themes/NoctaliaTheme-color-theme.json"
+
+#[theme.templates.user.discord]
+#input_path  = "/home/ezequiel/Documentos/community-templates/discord/discord-system24.css"
+#output_path = "/home/ezequiel/.config/vesktop/themes/discord-system24.css"
+
+#[theme.templates.user.gtk3]
+#input_path  = '/home/ezequiel/.config/noctalia/gtk/gtk3.css'
+#output_path = '~/.config/gtk-3.0/noctalia.css'
+#post_hook   = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+#[theme.templates.user.gtk4]
+#input_path  = '/home/ezequiel/.config/noctalia/gtk/gtk4.css'
+#output_path = '~/.config/gtk-4.0/noctalia.css'
+#post_hook   = '~/.config/noctalia/gtk/gtk-themes-reload.sh'
+
+[theme.templates.user.pywalfox]
+input_path  = '~/.config/noctalia/templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook   = 'pywalfox update'
+
+[theme.templates.user.firefox-website-colors]
+input_path  = '~/.config/noctalia/templates/firefox-colors.css'
+output_path = "/home/ezequiel/.librewolf/92mal505.default-default/chrome/colors.css"
+
+[theme.templates.user.prismlauncher]
+input_path = '~/.config/noctalia/templates/prismlauncher.json'
+output_path = '~/.local/share/PrismLauncher/themes/Matugen/theme.json'
+
+
+[theme.templates.user.noctalia-reversal-dark]
+input_path  = "~/.config/noctalia/templates/Noctalia-Reversal-dark.sh"
+output_path = "~/.cache/noctalia/Noctalia-Reversal-dark-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Reversal-dark-apply.sh"
+
+[theme.templates.user.noctalia-tela-dark]
+input_path  = "~/.config/noctalia/templates/Noctalia-Tela-dark.sh"
+output_path = "~/.cache/noctalia/Noctalia-Tela-dark-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Tela-dark-apply.sh"
+
+[theme.templates.user.noctalia-zafiro-dark]
+input_path  = "~/.config/noctalia/templates/Noctalia-Zafiro-Dark.sh"
+output_path = "~/.cache/noctalia/Noctalia-Zafiro-Dark-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Zafiro-Dark-apply.sh"
+
+[theme.templates.user.noctalia-vimix-dark]
+input_path  = "~/.config/noctalia/templates/Noctalia-Vimix-dark.sh"
+output_path = "~/.cache/noctalia/Noctalia-Vimix-dark-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Vimix-dark-apply.sh"
+
+
+
+
+
+[theme.templates.user.noctalia-colloid]
+input_path  = "~/.config/noctalia/templates/Noctalia-Colloid.sh"
+output_path = "~/.cache/noctalia/Noctalia-Colloid-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Colloid-apply.sh"
+
+[theme.templates.user.noctalia-zafiro]
+input_path  = "~/.config/noctalia/templates/Noctalia-Zafiro.sh"
+output_path = "~/.cache/noctalia/Noctalia-Zafiro-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Zafiro-apply.sh"
+
+[theme.templates.user.noctalia-papirus]
+input_path  = "~/.config/noctalia/templates/Noctalia-Papirus.sh"
+output_path = "~/.cache/noctalia/Noctalia-Papirus-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Papirus-apply.sh"
+
+[theme.templates.user.noctalia-tela]
+input_path  = "~/.config/noctalia/templates/Noctalia-Tela.sh"
+output_path = "~/.cache/noctalia/Noctalia-Tela-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Tela-apply.sh"
+
+[theme.templates.user.noctalia-flat]
+input_path  = "~/.config/noctalia/templates/Noctalia-Flat.sh"
+output_path = "~/.cache/noctalia/Noctalia-Flat-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Flat-apply.sh"

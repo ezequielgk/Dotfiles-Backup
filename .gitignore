@@ -1,0 +1,8 @@
+# install-all.sh writes this on the freshly installed system —
+# not versioned, regenerated per-install.
+install.log
+
+# Local .git of the inner backup repo (we run on the parent from here).
+# Whenever this repo is cloned fresh and the inner backup gets re-init'd
+# (see Phase 1 in README), that .git must not be tracked by the parent.
+/backup/.git

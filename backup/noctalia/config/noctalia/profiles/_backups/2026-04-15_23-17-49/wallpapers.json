@@ -1,0 +1,14 @@
+{
+  "screens": [
+    {
+      "name": "",
+      "light": "/home/ezequiel/Imágenes/Wallpapers/forest_stairs.png",
+      "dark": "/home/ezequiel/Imágenes/Wallpapers/forest_stairs.png"
+    },
+    {
+      "name": "DP-1",
+      "light": "/home/ezequiel/Imágenes/Wallpapers/sakura.jpg",
+      "dark": "/home/ezequiel/Imágenes/Wallpapers/sakura.jpg"
+    }
+  ]
+}
