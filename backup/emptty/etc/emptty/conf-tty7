@@ -1,0 +1,7 @@
+TTY_NUMBER = 7
+SWITCH_TTY = true
+DEFAULT_ENV = wayland
+#DEFAULT_SESSION = swayfx
+DEFAULT_SESSION = mango
+DEFAULT_USER = ezequiel
+LOGGING = rotate
