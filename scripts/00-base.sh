@@ -13,7 +13,9 @@ needs_install() {
     return 1
 }
 
-PACKAGES="firmware-amd-graphics mesa-vulkan-drivers libgl1-mesa-dri build-essential git curl wget gnupg ca-certificates locales seatd"
+# xz-utils: required by the Nix installer (require_util xz) to unpack the
+# binary tarball. Without it, 03b fails with "you do not have 'xz' installed".
+PACKAGES="firmware-amd-graphics mesa-vulkan-drivers libgl1-mesa-dri build-essential git curl wget gnupg ca-certificates locales seatd xz-utils"
 
 if [ "$(id -u)" -ne 0 ]; then
     echo "00: ERROR: este script debe correrse como root (sin sudo). corri: su -c '$0'  o  logearse como root" >&2
