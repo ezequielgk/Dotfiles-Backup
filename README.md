@@ -254,6 +254,19 @@ your real version (which has `auth optional pam_gnome_keyring.so` and
 or upgraded later, that file may be clobbered — re-run the `pam` part of the
 restore if that happens.
 
+### 5. `conf-tty7` mode 0640 vs git's 100644 normalization
+
+Git's tree objects store only two regular-file modes: `100644` (non-exec) or
+`100755` (exec). Anything else (like 0640) is normalized at index time. So
+`backup/emptty/etc/emptty/conf-tty7` (originally `root:root 0640`) ends up as
+`100644` in the git tree. After a fresh `git clone`, the file on disk has mode
+`0644`, not `0640`. The working-tree file in the `Dotfiles-Backup` checkout is
+chmod'd 0640 explicitly (preserved by `tar`), but the moment anyone clones
+the repo, that resets to 0644.
+
+`restore-from-backup.sh` handles this by `sudo chmod 0640 /etc/emptty/conf-tty7`
+right after the copy, regardless of the mode the backup file has on disk. Safe.
+
 ### 5. Nix single-user (no daemon)
 
 Your current system runs Nix in single-user mode (verified: no `nix-daemon`

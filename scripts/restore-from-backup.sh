@@ -178,6 +178,10 @@ echo ">> Categoria: emptty  (requiere: 06 emptty; sudo para /etc)"
 if pkg_installed emptty; then
     copy_root "$BACKUP/emptty/etc/emptty/conf-tty7" "/etc/emptty"
     copy_root "$BACKUP/emptty/etc/emptty/motd"     "/etc/emptty"
+    # Force 0640 on conf-tty7 regardless of the mode the backup file has.
+    # Git stores only 100644 or 100755 in its index — it normalizes 0640 to 0644,
+    # so a fresh clone ends up at 0644. The original is 0640 root:root.
+    sudo chmod 0640 /etc/emptty/conf-tty7 2>/dev/null || true
     restored="$restored emptty"
     echo "   NOTA: sv restart emptty para que tome la config nueva: sudo sv restart emptty"
 else
