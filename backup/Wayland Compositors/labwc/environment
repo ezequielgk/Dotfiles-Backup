@@ -1,0 +1,16 @@
+# Variables portadas desde Mango config.conf
+
+XDG_SESSION_TYPE=wayland
+QT_QPA_PLATFORM=wayland;xcb
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+GDK_BACKEND=wayland,x11
+
+# Optimizaciones Wayland/AMD
+SDL_VIDEODRIVER=wayland
+VDPAU_DRIVER=radeonsi
+LIBVA_DRIVER_NAME=radeonsi
+
+# Configuracion de teclado (xkb)
+XKB_DEFAULT_LAYOUT=latam,us
+XKB_DEFAULT_VARIANT=,altgr-intl
+XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle

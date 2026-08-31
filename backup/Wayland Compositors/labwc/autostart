@@ -1,0 +1,39 @@
+#!/bin/bash
+# ~/.config/labwc/autostart
+
+echo "$(date): $(free -h | grep Mem) (labwc_start)" >> ~/ram_history.log
+
+if [ -f "$HOME/.profile" ]; then
+    . "$HOME/.profile"
+fi
+
+export XDG_DATA_DIRS="$HOME/.local/share:/usr/share:$XDG_DATA_DIRS"
+
+# 1. Portales y Secretos
+# labwc maneja su propio nombre pero se recomienda usar "wlroots" en algunos contextos
+export XDG_CURRENT_DESKTOP=labwc
+# (Ya estan en environment pero los exportamos para procesos hijos por si acaso)
+export XDG_SESSION_TYPE=wayland
+
+dbus-update-activation-environment --all
+
+# 1.1 Portapapeles (Clipboard)
+wl-clip-persist --clipboard regular --reconnect-tries 0 2>/dev/null &
+wl-paste --type text --watch cliphist store &
+
+# 2. Audio (Pipewire)
+killall -q pipewire wireplumber pipewire-pulse
+pipewire &
+wireplumber &
+pipewire-pulse &
+
+# 3. GTK Theme
+gnome_schema="org.gnome.desktop.interface"
+gsettings set $gnome_schema gtk-theme "adw-gtk3-dark"
+gsettings set $gnome_schema cursor-theme "Adwaita"
+gsettings set $gnome_schema font-name "Terminess Font"
+gsettings set $gnome_schema icon-theme "Noctalia-Colloid"
+
+# 4. Programas
+killall -q noctalia
+noctalia &

@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+import os
+import shutil
+
+DOWNLOADS_DIR = os.path.expanduser("~/Descargas")
+
+CATEGORIES = {
+    'Imagenes': ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp'],
+    'Documentos': ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.txt', '.csv', '.md'],
+    'Videos': ['.mp4', '.mkv', '.avi', '.mov', '.wmv'],
+    'Audios': ['.mp3', '.wav', '.flac', '.ogg'],
+    'Comprimidos': ['.zip', '.tar.gz', '.rar', '.7z', '.tar'],
+    'Instaladores_Ejecutables': ['.deb', '.rpm', '.AppImage', '.exe', '.sh'],
+    'Codigo': ['.py', '.js', '.html', '.css', '.json', '.xml', '.cpp', '.c', '.java'],
+    'Otros': []
+}
+
+def get_category(extension):
+    extension = extension.lower()
+    for category, extensions in CATEGORIES.items():
+        if extension in extensions:
+            return category
+    return 'Otros'
+
+def organize_downloads():
+    print(f"Organizando archivos en: {DOWNLOADS_DIR}")
+
+    script_name = os.path.basename(__file__)
+
+    for item in os.listdir(DOWNLOADS_DIR):
+        item_path = os.path.join(DOWNLOADS_DIR, item)
+
+        if item == script_name or os.path.isdir(item_path):
+            continue
+
+        _, ext = os.path.splitext(item)
+
+        category = get_category(ext)
+
+        category_dir = os.path.join(DOWNLOADS_DIR, category)
+        if not os.path.exists(category_dir):
+            os.makedirs(category_dir)
+            print(f"Directorio creado: {category_dir}")
+
+        dest_path = os.path.join(category_dir, item)
+
+        counter = 1
+        name_only, ext_only = os.path.splitext(item)
+        while os.path.exists(dest_path):
+            new_name = f"{name_only}_{counter}{ext_only}"
+            dest_path = os.path.join(category_dir, new_name)
+            counter += 1
+
+        try:
+            shutil.move(item_path, dest_path)
+            print(f"Movido: {item} -> {category}/")
+        except Exception as e:
+            print(f"Error al mover {item}: {e}")
+
+if __name__ == "__main__":
+    organize_downloads()
+    print("Organización completada.")

@@ -1,0 +1,21 @@
+{
+  "name": "Noctalia Auto",
+  "dark": {
+    "bg": "{{ colors.surface.dark.hex }}",
+    "panel": "{{ colors.surface_container.dark.hex }}",
+    "tile": "{{ colors.surface_container_highest.dark.hex }}",
+    "border": "{{ colors.outline.dark.hex }}",
+    "text": "{{ colors.on_surface.dark.hex }}",
+    "textDim": "{{ colors.on_surface_variant.dark.hex }}",
+    "accent": "{{ colors.primary.dark.hex }}"
+  },
+  "light": {
+    "bg": "{{ colors.surface.light.hex }}",
+    "panel": "{{ colors.surface_container.light.hex }}",
+    "tile": "{{ colors.surface_container_highest.light.hex }}",
+    "border": "{{ colors.outline.light.hex }}",
+    "text": "{{ colors.on_surface.light.hex }}",
+    "textDim": "{{ colors.on_surface_variant.light.hex }}",
+    "accent": "{{ colors.primary.light.hex }}"
+  }
+}

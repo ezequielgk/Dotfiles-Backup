@@ -1,0 +1,76 @@
+[theme.templates]
+# Opcional: puedes habilitar las plantillas integradas o de la comunidad aquí si las necesitas
+# enable_builtin_templates   = true
+# enable_community_templates = true
+
+# --- Plantillas de Usuario ---
+
+[theme.templates.user.starship]
+input_path  = "~/.config/noctalia/starship/starship-x3.toml"
+output_path = "~/.config/starship.toml"
+
+#[theme.templates.user.sway]
+#input_path  = "~/.config/noctalia/sway-colors.conf"
+#output_path = "~/.config/sway/noctalia"
+
+#[theme.templates.user.foot]
+#input_path  = "/home/ezequiel/.config/noctalia/foot"
+#output_path = "/home/ezequiel/.config/foot/themes/noctalia"
+
+[theme.templates.user.obsidian]
+input_path  = "/home/ezequiel/.config/noctalia/obsidian-minimal-matugen-colors.css"
+output_path = "/home/ezequiel/Documentos/Universidad 2026/.obsidian/themes/Noctalia.css"
+
+[theme.templates.user.pywalfox]
+input_path  = '~/.config/noctalia/templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook   = 'pywalfox update'
+
+[theme.templates.user.firefox-website-colors]
+input_path  = '~/.config/noctalia/templates/firefox-colors.css'
+output_path = "/home/ezequiel/.librewolf/92mal505.default-default/chrome/colors.css"
+
+[theme.templates.user.prismlauncher]
+input_path = '~/.config/noctalia/templates/prismlauncher.json'
+output_path = '~/.local/share/PrismLauncher/themes/Matugen/theme.json'
+
+#[theme.templates.user.noctalia-reversal-dark]
+#input_path  = "~/.config/noctalia/templates/Noctalia-Reversal-dark.sh"
+#output_path = "~/.cache/noctalia/Noctalia-Reversal-dark-apply.sh"
+#post_hook   = "bash ~/.cache/noctalia/Noctalia-Reversal-dark-apply.sh"
+
+#[theme.templates.user.noctalia-tela-dark]
+#input_path  = "~/.config/noctalia/templates/Noctalia-Tela-dark.sh"
+#output_path = "~/.cache/noctalia/Noctalia-Tela-dark-apply.sh"
+#post_hook   = "bash ~/.cache/noctalia/Noctalia-Tela-dark-apply.sh"
+
+#[theme.templates.user.noctalia-zafiro-dark]
+#input_path  = "~/.config/noctalia/templates/Noctalia-Zafiro-Dark.sh"
+#output_path = "~/.cache/noctalia/Noctalia-Zafiro-Dark-apply.sh"
+#post_hook   = "bash ~/.cache/noctalia/Noctalia-Zafiro-Dark-apply.sh"
+
+#[theme.templates.user.noctalia-vimix-dark]
+#input_path  = "~/.config/noctalia/templates/Noctalia-Vimix-dark.sh"
+#output_path = "~/.cache/noctalia/Noctalia-Vimix-dark-apply.sh"
+#post_hook   = "bash ~/.cache/noctalia/Noctalia-Vimix-dark-apply.sh"
+
+
+[theme.templates.user.rmpc]
+input_path  = '~/.config/noctalia/templates/theme.ron'
+output_path = "~/.config/rmpc/theme.ron"
+
+[theme.templates.user.startpage]
+input_path = "~/.config/noctalia/templates/start-page.json"
+output_path = "/home/ezequiel/Documentos/dsad/Start-Page/noctalia.json"
+
+
+
+[theme.templates.user.noctalia-zafiro]
+input_path  = "~/.config/noctalia/templates/Noctalia-Zafiro.sh"
+output_path = "~/.cache/noctalia/Noctalia-Zafiro-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Zafiro-apply.sh"
+
+[theme.templates.user.noctalia-colloid]
+input_path  = "~/.config/noctalia/templates/Noctalia-Colloid.sh"
+output_path = "~/.cache/noctalia/Noctalia-Colloid-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Colloid-apply.sh"

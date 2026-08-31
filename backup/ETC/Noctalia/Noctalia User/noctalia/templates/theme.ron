@@ -1,0 +1,139 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    default_album_art_path: None,
+    draw_borders: false,
+    show_song_table_header: false,
+    symbols: (song: "🎵", dir: "📁", playlist: "🎼", marker: "\u{e0b0}"),
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Header),
+                size: "2",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                size: "1",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (size: "1", pane: Pane(Property(content: [(kind: Text("["), style: (fg: "{{ colors.outline.default.hex }}"))]))),
+                        (size: "100%", pane: Pane(ProgressBar)),
+                        (size: "1", pane: Pane(Property(content: [(kind: Text("]"), style: (fg: "{{ colors.outline.default.hex }}"))]))),
+                    ],
+                ),
+            ),
+        ],
+    ),
+    progress_bar: (
+        symbols: ["-", "-", ">", " ", " "],
+        track_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+        elapsed_style: (fg: "{{ colors.primary.default.hex }}"),
+        thumb_style: (fg: "{{ colors.primary.default.hex }}"),
+        use_track_when_empty: true,
+    ),
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (),
+        ends_style: (),
+        thumb_style: (fg: "{{ colors.secondary.default.hex }}"),
+    ),
+    browser_column_widths: [20, 38, 42],
+    text_color: "{{ colors.on_background.default.hex }}",
+    background_color: "{{ colors.background.default.hex }}",
+    header_background_color: None,
+    modal_background_color: None,
+    modal_backdrop: false,
+    tab_bar: (
+        active_style: (fg: "{{ colors.on_primary.default.hex }}", bg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+        inactive_style: (),
+    ),
+    borders_style: (fg: "{{ colors.outline.default.hex }}"),
+    highlighted_item_style: (fg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+    current_item_style: (fg: "{{ colors.on_secondary.default.hex }}", bg: "{{ colors.secondary.default.hex }}", modifiers: "Bold"),
+    highlight_border_style: (fg: "{{ colors.secondary.default.hex }}"),
+    song_table_format: [
+        (
+            prop: (kind: Property(Artist), style: (fg: "{{ colors.secondary.default.hex }}"), default: (kind: Text("Unknown"))),
+            width: "50%",
+            alignment: Left,
+        ),
+        (
+            prop: (kind: Text("-"), style: (fg: "{{ colors.secondary.default.hex }}"), default: (kind: Text("Unknown"))),
+            width: "1",
+            alignment: Center,
+        ),
+        (
+            prop: (kind: Property(Title), style: (fg: "{{ colors.tertiary.default.hex }}"), default: (kind: Text("Unknown"))),
+            width: "50%",
+        ),
+    ],
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "{{ colors.tertiary_fixed.default.hex }}", modifiers: "Bold"),
+                        default: (kind: Text("Unknown"), style: (fg: "{{ colors.tertiary_fixed.default.hex }}", modifiers: "Bold"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Title)), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold"),
+                        default: (kind: Text("No Song"), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold"))
+                    )
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold")),
+                    (kind: Property(Status(Volume)), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold"))
+                ]
+            ),
+            (
+                left: [
+                    (kind: Property(Status(RepeatV2(
+                        on_label: "repeat", off_label: "repeat",
+                        on_style: (fg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+                        off_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+                    )))),
+                    (kind: Text("  ")),
+                    (kind: Property(Status(RandomV2(
+                        on_label: "random", off_label: "random",
+                        on_style: (fg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+                        off_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+                    )))),
+                    (kind: Text("  ")),
+                    (kind: Property(Status(ConsumeV2(
+                        on_label: "consume", off_label: "consume", oneshot_label: "consume",
+                        on_style: (fg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+                        off_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+                        oneshot_style: (fg: "{{ colors.tertiary_fixed.default.hex }}"),
+                    )))),
+                    (kind: Text("  ")),
+                    (kind: Property(Status(SingleV2(
+                        on_label: "single", off_label: "single", oneshot_label: "single",
+                        on_style: (fg: "{{ colors.primary.default.hex }}", modifiers: "Bold"),
+                        off_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+                        oneshot_style: (fg: "{{ colors.tertiary_fixed.default.hex }}"),
+                    )))),
+                ],
+                center: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "{{ colors.on_background.default.hex }}")),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration)), style: (fg: "{{ colors.on_background.default.hex }}")),
+                ],
+                right: [
+                    (kind: Property(Status(Bitrate)), style: (fg: "{{ colors.outline.default.hex }}")),
+                    (kind: Text(" kbps"), style: (fg: "{{ colors.outline.default.hex }}")),
+                ]
+            )
+        ],
+    ),
+)

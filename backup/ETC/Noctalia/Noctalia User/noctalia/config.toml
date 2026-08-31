@@ -1,0 +1,47 @@
+
+# ==================================================
+# PERFORMANCE OPTIMIZATIONS
+# ==================================================
+
+[dock]
+shadow = false
+
+[shell.panel]
+transparency_mode="solid"
+shadow = false
+borders = false
+
+
+[widget.custom_username]
+type = "custom_button"
+label = "ezequiel@devuan:~"
+show_icon = false
+interactive = false
+
+[widget.lbl_layout]
+type = "custom_button"
+label = "L: "
+show_icon = false
+interactive = false
+
+[widget.lbl_workspace]
+type = "custom_button"
+label = " W:"
+show_icon = false
+interactive = false
+
+[widget.workspaces]
+style = "minimal"
+show_labels = true
+label_source = "id"
+hide_when_empty = false
+labels_only_when_occupied = false
+
+[widget.mango_layouts_btn]
+show_glyph = false
+show_text = true
+
+[idle.behavior.screen-off]
+timeout = 600
+command = "wlopm --off DVI-D-1"
+resume_command = "wlopm --on DVI-D-1"

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+
+<menu id="client-menu">
+  <item label="Minimizar">
+    <action name="Iconify" />
+  </item>
+  <item label="Maximizar">
+    <action name="ToggleMaximize" />
+  </item>
+  <item label="Pantalla Completa">
+    <action name="ToggleFullscreen" />
+  </item>
+  <item label="Fijar Arriba (Always on Top)">
+    <action name="ToggleAlwaysOnTop" />
+  </item>
+  <menu id="client-send-to-menu" />
+  <separator />
+  <item label="Cerrar">
+    <action name="Close" />
+  </item>
+</menu>
+
+<menu id="root-menu">
+  <item label="Abrir Terminal (foot)">
+    <action name="Execute" command="foot" />
+  </item>
+  <item label="Explorador de Archivos">
+    <action name="Execute" command="pcmanfm-qt" />
+  </item>
+  <separator label="Noctalia" />
+  <item label="Refrescar Configuración">
+    <action name="Execute" command="noctalia msg config-reload" />
+  </item>
+  <item label="Selector de Wallpapers">
+    <action name="Execute" command="noctalia msg panel-toggle wallpaper" />
+  </item>
+  <item label="Configuración">
+    <action name="Execute" command="noctalia msg settings-toggle" />
+  </item>
+  <separator label="Sistema" />
+  <item label="Refrescar Entorno">
+    <action name="Reconfigure" />
+  </item>
+  <item label="Cerrar Sesión">
+    <action name="Exit" />
+  </item>
+</menu>
+
+</openbox_menu>
