@@ -134,7 +134,7 @@
   <desktops number="10" />
 
   <windowRules>
-    <!-- Server Side Decorations false para que noctalia y foot usen las suyas si tienen -->
+    <!-- Server Side Decorations -->
     
   </windowRules>
 </labwc_config>
